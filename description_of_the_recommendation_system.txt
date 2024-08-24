@@ -1,0 +1,46 @@
+The recommendation algorithm implemented in FavoriteViewSet involves several steps 
+to calculate the similarity between books to provide recommendations.favorites = self.get_queryset()
+
+
+favorites = self.get_queryset()
+---- Here i get a list of all books that the user has added to favorites. If this list is empty, we return an error.
+
+genres = Counter()
+authors = Counter()
+descriptions = []
+book_ids = []
+
+for favorite in favorites:
+    genres[favorite.book.genre] += 1
+    authors[favorite.book.author.id] += 1
+    descriptions.append(favorite.book.description)
+    book_ids.append(favorite.book.id)
+
+---- Counting the frequency of genres and authors
+
+similar_books = Book.objects.exclude(id__in=favorites.values_list('book_id', flat=True))
+---- Here i create a queryset excluding books that are already in the user's favorites.
+
+if descriptions:
+    tfidf_vectorizer = TfidfVectorizer(stop_words='english')
+    tfidf_matrix = tfidf_vectorizer.fit_transform(descriptions)
+    cosine_similarities = cosine_similarity(tfidf_matrix, tfidf_matrix)
+---- Calculating cosine similarity of book descriptions (search for text similarity)
+     I use TF-IDF - Converting Textual Book Descriptions into Numeric Representation with TF-IDF
+
+similar_books = similar_books.annotate(
+    genre_similarity=Count('genre', filter=Q(genre__in=genres.keys())),
+    author_similarity=Count('author', filter=Q(author_id__in=authors.keys()))
+)
+---- I count the number of matches by genre and author in each book that is not in the favorites, with books that are in the favorites.
+
+similar_books = similar_books.annotate(
+    similarity=F('genre_similarity') * 0.4 + F('author_similarity') * 0.3 +
+               (cosine_similarities * 0.3 if descriptions else 0)
+).order_by('-similarity')[:5]
+---- The final similarity metric is calculated as a weighted sum of:
+	40% of genre similarity
+	30% of author similarity
+	30% of cosine text similarity
+	I select the top 5 books with the highest similarity value for recommendation
+

@@ -1,0 +1,115 @@
+REGISTER
+POST http://127.0.0.1:8000/auth/register/
+        {
+            "username": "user",
+            "password": "password",
+            "email": "test@google.com"
+        }
+LOGIN        
+POST http://127.0.0.1:8000/auth/login/
+        {
+            "username": "user",
+            "password": "password"
+        }
+        
+
+
+
+GET
+1. http://127.0.0.1:8000/api/books/ # Fetches a list of all books
+2. http://127.0.0.1:8000/api/books/:id/ # replace :id with the actual book ID
+3. http://127.0.0.1:8000/api/authors/ # Fetches a list of all authors
+4. http://127.0.0.1:8000/api/authors/:id/ # replace :id with the actual author ID
+
+POST 
+
+1. http://127.0.0.1:8000/api/books/ # create a New Book (protected)
+
+#example
+{
+  "title": "New Book Title",
+  "author": 4,
+  "isbn": "1234567890123",
+  "isbn13": "1234567890123",
+  "language": "EN",
+  "average_rating": 4.5,
+  "ratings_count": 100,
+  "text_reviews_count": 20,
+  "publisher": "Some Publisher",
+  "num_pages": 320,
+  "description": "A brief description of the book",
+  "genre": "Fiction"
+}
+
+2. http://127.0.0.1:8000/api/authors/ # create a New Author (protected)
+
+{
+  "name": "New Author Name",
+  "gender": "Male",
+  "image_url": "http://example.com/image.jpg",
+  "about": "A brief bio about the author",
+  "fans_count": 1000
+}
+
+PUT 
+
+1. Update an Existing Book (Protected)
+ http://127.0.0.1:8000/api/books/:id/ # replace :id with the actual book ID 
+
+{
+  "title": "Updated Book Title",
+  "author": 4,
+  "isbn": "1234567890123",
+  "isbn13": "1234567890123",
+  "language": "EN",
+  "average_rating": 4.7,
+  "ratings_count": 150,
+  "text_reviews_count": 25,
+  "publisher": "Updated Publisher",
+  "num_pages": 340,
+  "description": "An updated description of the book",
+  "genre": "Non-Fiction"
+}
+
+2. Update an Existing Author (Protected)
+http://127.0.0.1:8000/api/authors/:id/
+
+{
+  "name": "Updated Author Name",
+  "gender": "Female",
+  "image_url": "http://example.com/updated_image.jpg",
+  "about": "An updated bio about the author",
+  "fans_count": 2000
+}
+
+DELETE 
+
+1. Delete a Book
+http://127.0.0.1:8000/api/books/:id/
+
+2. Delete an Author (Protected)
+http://127.0.0.1:8000/api/authors/:id/
+
+Search Functionality
+GET http://127.0.0.1:8000/api/books/?search=...
+
+
+Favorite list ADD BOOK (Protected)
+POST http://127.0.0.1:8000/api/favorites/
+
+        {
+            "book": 71 # id book
+        }
+        
+
+Delete from favorite list (Protected)
+DELETE http://127.0.0.1:8000/api/favorites/remove/
+{
+    "book": 71 # id book
+}
+
+Show favorite list (Protected)
+GET http://127.0.0.1:8000/api/favorites/recommendations/
+
+
+
