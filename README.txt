@@ -17,4 +17,4 @@ a few commands to save time, but rest assured that all the commands work.
 You can see the entire list of commands in commands.txt
 
 You can see a detailed description of the recommendation system in description_of_the_recommendation_system.txt
-In ./videos/3.mp4 you can see how quickly the list of recommendations is returned (but you should take into account that a relatively small set of data was used for the test)
+In ./videos/3.mp4 you can see how quickly (less 1 second) the list of recommendations is returned (but you should take into account that a relatively small set of data was used for the test)
