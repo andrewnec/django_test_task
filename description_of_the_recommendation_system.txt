@@ -1,7 +1,8 @@
 
 
 
-!!!!!!!!  This recommendation system is experimental. That is, it is good for demonstration in a test task, but for production it might be worth considering a more complex and more tested recommendation system.  !!!!!!!!!
+!!!!!!!!  This recommendation system is experimental. That is, it is good for demonstration in a test task,
+but for production it might be worth considering more tested recommendation system.  !!!!!!!!!
 
 
 
