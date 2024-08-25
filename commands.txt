@@ -84,7 +84,7 @@ http://127.0.0.1:8000/api/authors/:id/
 
 DELETE 
 
-1. Delete a Book
+1. Delete a Book (Protected)
 http://127.0.0.1:8000/api/books/:id/
 
 2. Delete an Author (Protected)
