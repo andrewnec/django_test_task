@@ -1,5 +1,15 @@
-The recommendation algorithm implemented in FavoriteViewSet involves several steps 
-to calculate the similarity between books to provide recommendations.favorites = self.get_queryset()
+
+
+
+!!!!!!!!  This recommendation system is experimental. That is, it is good for demonstration in a test task, but for production it might be worth considering a more complex and more tested recommendation system.  !!!!!!!!!
+
+
+
+
+
+The recommendation algorithm implemented in FavoriteViewSet
+
+
 
 
 favorites = self.get_queryset()
